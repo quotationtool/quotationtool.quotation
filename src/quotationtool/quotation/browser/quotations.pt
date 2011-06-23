@@ -1,0 +1,11 @@
+<div i18n:domain="quotationtool">
+
+  <h1 i18n:translate="quotationcontainer-container-label">Quotations in the Database</h1>
+
+  <div class="batch" tal:content="structure view/renderBatch"/>
+
+  <div tal:replace="structure view/renderTable"/>
+
+  <div class="batch" tal:content="structure view/renderBatch"/>
+
+</div>

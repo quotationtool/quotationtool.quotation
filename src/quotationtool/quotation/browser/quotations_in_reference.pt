@@ -1,0 +1,15 @@
+<div i18n:domain="quotationtool">
+  
+  <h1 i18n:translate="quotations-in-reference-label">Quotations in Reference</h1>
+
+  <p i18n:translate="examples-in-reference-desc">
+    This is a list of the quotation from the edition above that were collected so far.
+  </p>
+
+  <div class="batch" tal:content="structure view/renderBatch"/>
+
+  <div tal:replace="structure view/renderTable"/>
+
+  <div class="batch" tal:content="structure view/renderBatch"/>
+
+</div>

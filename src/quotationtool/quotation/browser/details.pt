@@ -1,0 +1,62 @@
+<div i18n:domain="quotationtool">
+  <table class="schema-view">
+    <tr>
+      <td class="schema-col" 
+	  tal:define="schema modules/quotationtool/quotation/interfaces/IQuotation/quotation">
+	  <span metal:define-macro="schema_info" class="schema-info">
+	    <span class="title" tal:content="schema/title | nothing"
+		  >Example</span
+		  ><span class="required" tal:condition="schema/required | nothing"
+		  >*</span
+		  ><tal:block condition="schema/description | nothing"
+		  ><br
+		  /><span class="description" tal:content="schema/description"
+		  >Description</span
+		  ></tal:block>
+	  </span>  
+      </td>
+      <td tal:content="structure view/renderQuotation">...</td>
+    </tr>
+    <tr>
+      <td class="schema-col" 
+	  tal:define="schema modules/quotationtool/quotation/interfaces/IQuotation/reference">
+	<metal:block use-macro="template/macros/schema_info">
+	  Cited from
+	</metal:block>
+      </td>
+      <td>
+	<a class="content" href=""
+	    tal:content="structure context/reference/@@citation"
+	    tal:attributes="href string:${context/reference/@@absolute_url}/@@quotations.html"
+	    >...</a>
+      </td>
+    </tr>
+    <tr tal:condition="context/volume|nothing">
+      <td class="schema-col" 
+	  tal:define="schema modules/quotationtool/quotation/interfaces/IQuotation/volume">
+	<metal:block use-macro="template/macros/schema_info">
+	  Volume
+	</metal:block>
+      </td>
+      <td tal:content="context/volume | nothing">...</td>
+    </tr>
+    <tr>
+      <td class="schema-col" 
+	  tal:define="schema modules/quotationtool/quotation/interfaces/IQuotation/page">
+	<metal:block use-macro="template/macros/schema_info">
+	  Page
+	</metal:block>
+      </td>
+      <td tal:content="context/page | nothing">...</td>
+    </tr>
+    <tr tal:condition="context/position|nothing">
+      <td class="schema-col" 
+	  tal:define="schema modules/quotationtool/quotation/interfaces/IQuotation/position">
+	<metal:block use-macro="template/macros/schema_info">
+	  Position
+	</metal:block>
+      </td>
+      <td tal:content="context/position | nothing">...</td>
+    </tr>
+  </table>
+</div>

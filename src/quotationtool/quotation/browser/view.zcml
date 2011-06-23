@@ -1,0 +1,62 @@
+<configure
+    xmlns='http://namespaces.zope.org/browser'
+    xmlns:z3c='http://namespaces.zope.org/z3c'
+    xmlns:zope='http://namespaces.zope.org/zope'
+    xmlns:i18n='http://namespaces.zope.org/i18n'
+    i18n_domain="quotationtool">
+
+  <include file="dependencies.zcml"/>
+
+  <zope:view
+      for="..interfaces.IQuotationContainer"
+      name="label"
+      permission="zope.View"
+      factory=".view.QuotationContainerLabelView"
+      type="quotationtool.skin.interfaces.IQuotationtoolBrowserLayer"
+      />
+
+  <!--zope:view
+      for="quotationtool.quotation.interfaces.IReference"
+      name="year"
+      type="quotationtool.skin.interfaces.IQuotationtoolBrowserLayer"
+      permission="zope.View"
+      factory=".reference.YearView"
+      />
+  <zope:view
+      for="quotationtool.quotation.interfaces.IReference"
+      name="author"
+      type="quotationtool.skin.interfaces.IQuotationtoolBrowserLayer"
+      permission="zope.View"
+      factory=".reference.AuthorView"
+      />
+  <zope:view
+      for="quotationtool.quotation.interfaces.IReference"
+      name="title"
+      type="quotationtool.skin.interfaces.IQuotationtoolBrowserLayer"
+      permission="zope.View"
+      factory=".reference.TitleView"
+      /-->
+
+  <zope:view
+      for="..interfaces.IQuotation"
+      name="details"
+      type="quotationtool.skin.interfaces.IQuotationtoolBrowserLayer"
+      permission="zope.View"
+      factory=".view.DetailsView"
+      />
+  <zope:view
+      for="..interfaces.IQuotation"
+      name="list"
+      type="quotationtool.skin.interfaces.IQuotationtoolBrowserLayer"
+      permission="zope.View"
+      factory=".view.ListView"
+      />
+  <zope:view
+      for="..interfaces.IQuotation"
+      name="label"
+      type="quotationtool.skin.interfaces.IQuotationtoolBrowserLayer"
+      permission="zope.View"
+      factory=".view.QuotationLabelView"
+      />
+
+</configure>

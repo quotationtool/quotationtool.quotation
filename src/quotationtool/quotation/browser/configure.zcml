@@ -1,0 +1,14 @@
+<configure
+    xmlns='http://namespaces.zope.org/zope'
+    i18n_domain="quotationtool">
+
+  <include file="dependencies.zcml"/>
+
+  <include file="view.zcml"/>
+  <include file="table.zcml"/>
+  <include file="form.zcml"/>
+  <include file="flags.zcml"/>
+  <!--include file="nav.zcml"/>
+  <include file="tabs.zcml"/-->
+
+</configure>

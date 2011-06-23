@@ -1,0 +1,102 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="quotationtool">
+
+  <include file="dependencies.zcml"/>
+
+  <z3c:pagelet
+      name="index.html"
+      for="..interfaces.IQuotationContainer"
+      class=".table.QuotationContainerTable"
+      layer="quotationtool.skin.interfaces.IQuotationtoolBrowserLayer"
+      permission="zope.View"
+      />
+  <z3c:template
+      for=".table.QuotationContainerTable"
+      layer="quotationtool.skin.interfaces.IQuotationtoolBrowserLayer"
+      template="quotations.pt"
+      />
+
+  <adapter
+      for="*
+	   quotationtool.skin.interfaces.IQuotationtoolBrowserLayer
+	   z3c.table.interfaces.ITable
+	   .table.ISortingColumn"
+      provides="z3c.table.interfaces.IColumnHeader"
+      factory="quotationtool.skin.browser.table.SortingColumnHeader"
+      />
+
+  <z3c:pagelet
+      name="quotations.html"
+      for="quotationtool.quotation.interfaces.IReference"
+      class=".table.QuotationsInReferenceTable"
+      layer="quotationtool.skin.interfaces.IQuotationtoolBrowserLayer"
+      permission="zope.View"
+      />
+  <z3c:template
+      for=".table.IQuotationsInReferenceTable"
+      layer="quotationtool.skin.interfaces.IQuotationtoolBrowserLayer"
+      template="quotations_in_reference.pt"
+      />
+  <adapter
+      factory=".table.QuotationsInReference"
+      />
+
+      
+  <adapter
+      name="year"
+      for="*
+	   quotationtool.skin.interfaces.IQuotationtoolBrowserLayer
+	   .table.IAuthorTitleQuotationsTable"
+      provides="z3c.table.interfaces.IColumn"
+      factory=".table.YearColumn"
+      />
+      
+  <adapter
+      name="author"
+      for="*
+	   quotationtool.skin.interfaces.IQuotationtoolBrowserLayer
+	   .table.IAuthorTitleQuotationsTable"
+      provides="z3c.table.interfaces.IColumn"
+      factory=".table.AuthorColumn"
+      />
+      
+  <adapter
+      name="title"
+      for="*
+	   quotationtool.skin.interfaces.IQuotationtoolBrowserLayer
+	   .table.IAuthorTitleQuotationsTable"
+      provides="z3c.table.interfaces.IColumn"
+      factory=".table.TitleColumn"
+      />
+      
+  <adapter
+      name="page"
+      for="*
+	   quotationtool.skin.interfaces.IQuotationtoolBrowserLayer
+	   .table.IQuotationsInReferenceTable"
+      provides="z3c.table.interfaces.IColumn"
+      factory=".table.PageColumn"
+      />
+      
+  <adapter
+      name="quotation"
+      for="*
+	   quotationtool.skin.interfaces.IQuotationtoolBrowserLayer
+	   .table.IQuotationsInReferenceTable"
+      provides="z3c.table.interfaces.IColumn"
+      factory=".table.QuotationColumn"
+      />
+      
+  <adapter
+      name="flags"
+      for="*
+	   quotationtool.skin.interfaces.IQuotationtoolBrowserLayer
+	   .table.IQuotationsTable"
+      provides="z3c.table.interfaces.IColumn"
+      factory=".table.FlagsColumn"
+      />
+      
+</configure>

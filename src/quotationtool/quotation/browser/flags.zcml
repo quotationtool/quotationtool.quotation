@@ -1,0 +1,25 @@
+<configure
+    xmlns='http://namespaces.zope.org/browser'
+    i18n_domain="quotationtool">
+
+  <viewlet
+      for="..interfaces.IQuotation"
+      name="quotationtool.quotation.browser.flags.SchemaErrorFlag"
+      manager="quotationtool.skin.interfaces.IFlags"
+      class=".flags.SchemaErrorFlag"
+      layer="quotationtool.skin.interfaces.IQuotationtoolBrowserLayer"
+      permission="quotationtool.quotation.EditQuotation"
+      weight="10"
+      />
+
+  <viewlet
+      for="..interfaces.IReference"
+      name="quotationtool.quotation.browser.flags.QuotationCountFlag"
+      manager="quotationtool.skin.interfaces.IFlags"
+      class=".flags.QuotationCountFlag"
+      layer="quotationtool.skin.interfaces.IQuotationtoolBrowserLayer"
+      permission="zope.View"
+      weight="12"
+      />
+
+</configure>

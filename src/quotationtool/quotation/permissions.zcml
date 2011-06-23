@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="quotationtool">
+
+  <permission
+      id="quotationtool.quotation.AddQuotation"
+      title="Add a quotation to the database."
+      />
+
+  <permission
+      id="quotationtool.quotation.EditQuotation"
+      title="Edit an existing quotation item."
+      />
+      
+</configure>
