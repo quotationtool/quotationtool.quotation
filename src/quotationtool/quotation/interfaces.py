@@ -83,6 +83,7 @@ class IQuotation(Interface):
         description = _('iquotation-page-desc',
                         u"Number of page without ''p.''."),
         required = False,
+        default = u"",
         )
 
     volume = TextLine(
@@ -91,14 +92,16 @@ class IQuotation(Interface):
         description = _('iquotation-volume-desc',
                         u"Number of Volume without ''vol.''."),
         required = False,
+        default = u"",
         )
 
     position = TextLine(
         title = _('iquotation-position-title',
                   u"Position within Division/Disposition"),
         description = _('iquotation-position-desc',
-                        u"If no page is available one might relocate the quotation by chapter or paragraph. Use this field to help others finding the quotation."),
+                        u"If no page is available one might relocate the quotation by chapter or paragraph. Use this field to help others find the quotation."),
         required = False,
+        default = u"",
         )
     
     @invariant

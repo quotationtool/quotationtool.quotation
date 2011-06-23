@@ -95,6 +95,23 @@
       handler=".quotation.createRelationIndex"
       />
 
+  <adapter
+      for=".interfaces.IQuotation"
+      provides="z3c.indexer.interfaces.IValueIndexer"
+      factory=".indexing.AnyValueIndexer"
+      name="any-fulltext"
+      />
+
+  <adapter
+      for=".interfaces.IQuotation"
+      provides="z3c.indexer.interfaces.IMultiIndexer"
+      factory=".indexing.QuotationIndexer"
+      name="QuotationIndexer"
+      />
+  
+  <subscriber handler=".indexing.createQuotationIndicesSubscriber"/>
+
+
   <!--include package=".browser"/-->
 
 </configure>

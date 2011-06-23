@@ -49,7 +49,7 @@
       name="year"
       for="*
 	   quotationtool.skin.interfaces.IQuotationtoolBrowserLayer
-	   .table.IAuthorTitleQuotationsTable"
+	   .table.IAuthorTitleYearTable"
       provides="z3c.table.interfaces.IColumn"
       factory=".table.YearColumn"
       />
@@ -58,7 +58,7 @@
       name="author"
       for="*
 	   quotationtool.skin.interfaces.IQuotationtoolBrowserLayer
-	   .table.IAuthorTitleQuotationsTable"
+	   .table.IAuthorTitleYearTable"
       provides="z3c.table.interfaces.IColumn"
       factory=".table.AuthorColumn"
       />
@@ -67,7 +67,7 @@
       name="title"
       for="*
 	   quotationtool.skin.interfaces.IQuotationtoolBrowserLayer
-	   .table.IAuthorTitleQuotationsTable"
+	   .table.IAuthorTitleYearTable"
       provides="z3c.table.interfaces.IColumn"
       factory=".table.TitleColumn"
       />
@@ -85,7 +85,7 @@
       name="quotation"
       for="*
 	   quotationtool.skin.interfaces.IQuotationtoolBrowserLayer
-	   .table.IQuotationsInReferenceTable"
+	   .table.IQuotationsTable"
       provides="z3c.table.interfaces.IColumn"
       factory=".table.QuotationColumn"
       />

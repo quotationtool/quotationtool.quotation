@@ -22,7 +22,7 @@ class IQuotationsTable(ITable):
     """ A table for quotation objects."""
 
 
-class IAuthorTitleQuotationsTable(ITable):
+class IAuthorTitleYearTable(ITable):
     """ A table for quotation objects with columns for author and
     title."""
 
@@ -40,7 +40,7 @@ class QuotationContainerTable(table.Table, BrowserPagelet):
     """ A table with all quotations in the quotation container."""
 
     zope.interface.implements(IQuotationsTable, 
-                              IAuthorTitleQuotationsTable)
+                              IAuthorTitleYearTable)
 
     render = BrowserPagelet.render
 
@@ -163,7 +163,7 @@ class PageColumn(column.GetAttrColumn):
     attrName = 'page'
 
     def getSortKey(self, item):
-        s = getattr(item, 'page', u"")
+        s = unicode(getattr(item, 'page', u""))
         try:
             i = int(s)
         except ValueError:
