@@ -96,18 +96,61 @@
       />
 
   <adapter
-      for=".interfaces.IQuotation"
-      provides="z3c.indexer.interfaces.IValueIndexer"
       factory=".indexing.AnyValueIndexer"
       name="any-fulltext"
       />
-
   <adapter
-      for=".interfaces.IQuotation"
-      provides="z3c.indexer.interfaces.IMultiIndexer"
       factory=".indexing.QuotationIndexer"
       name="QuotationIndexer"
       />
+  <adapter
+      factory=".indexing.AuthorTextIndexer"
+      name="author-fulltext"
+      />
+  <adapter
+      factory=".indexing.AuthorFieldIndexer"
+      name="author-field"
+      />
+  <adapter
+      factory=".indexing.TitleTextIndexer"
+      name="title-fulltext"
+      />
+  <adapter
+      factory=".indexing.TitleFieldIndexer"
+      name="title-field"
+      />
+  <adapter
+      factory=".indexing.YearFieldIndexer"
+      name="year-field"
+      />
+
+
+  <adapter
+      for=".searcher.IQuotationSearchFilter"
+      factory="quotationtool.search.searcher.any_factory"
+      name="any-fulltext"
+      />
+  <adapter
+      for=".searcher.IQuotationSearchFilter"
+      factory="quotationtool.search.searcher.type_factory"
+      name="type-field"
+      />
+  <adapter
+      for=".searcher.IQuotationSearchFilter"
+      factory=".searcher.quotation_factory"
+      name="quotation-fulltext"
+      />
+  <adapter
+      for=".searcher.IQuotationSearchFilter"
+      factory=".searcher.author_factory"
+      name="author-fulltext"
+      />
+  <adapter
+      for=".searcher.IQuotationSearchFilter"
+      factory=".searcher.title_factory"
+      name="title-fulltext"
+      />
+
   
   <subscriber handler=".indexing.createQuotationIndicesSubscriber"/>
 

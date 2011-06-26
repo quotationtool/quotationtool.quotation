@@ -109,7 +109,7 @@ class YearColumn(column.Column):
         return view()
 
     def getSortKey(self, item):
-        indexer = zope.component.getAdapter(item.reference, IIndexer, name='year')
+        indexer = zope.component.getAdapter(item.reference, IIndexer, name='year-field')
         return indexer.value
 
 
@@ -129,7 +129,7 @@ class AuthorColumn(column.Column):
         return view()
 
     def getSortKey(self, item):
-        indexer = zope.component.getAdapter(item.reference, IIndexer, name='author')
+        indexer = zope.component.getAdapter(item.reference, IIndexer, name='author-field')
         return indexer.value
 
 
@@ -149,7 +149,7 @@ class TitleColumn(column.Column):
         return view()
 
     def getSortKey(self, item):
-        indexer = zope.component.getAdapter(item.reference, IIndexer, name='title')
+        indexer = zope.component.getAdapter(item.reference, IIndexer, name='title-field')
         return indexer.value
 
 

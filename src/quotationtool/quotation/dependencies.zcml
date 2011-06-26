@@ -12,6 +12,7 @@
   <include package="zope.annotation"/>
   <include package="zope.intid"/>
   <include package="zope.keyreference"/>
+  <include package="z3c.indexer" file="subscriber.zcml"/>
   
   <include package="quotationtool.security"/>
   <include package="quotationtool.renderer"/>

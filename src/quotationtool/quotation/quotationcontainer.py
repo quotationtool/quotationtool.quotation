@@ -16,6 +16,8 @@ class QuotationContainer(BTreeContainer):
 
     zope.interface.implements(IQuotationContainer,
                               IQuotationContainerContainer)
+    
+    __name__ = __parent__ = None
 
     _count = FieldProperty(IQuotationContainer['_count'])
 

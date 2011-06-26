@@ -6,6 +6,7 @@ from zope.site.testing import siteSetUp
 from zope.app.testing.setup import placefulSetUp
 from ZODB.tests.util import DB
 import transaction
+import zope.intid
 
 from zope.keyreference.testing import SimpleKeyReference
 
@@ -21,6 +22,10 @@ def setUpRoot(test):
     test.globs['root'] = root
     
     zope.component.provideAdapter(SimpleKeyReference)
+
+    sm = root.getSiteManager()
+    intids = sm['default']['intids'] = zope.intid.IntIds()
+    sm.registerUtility(intids, zope.intid.interfaces.IIntIds)
 
 
 def test_suite():

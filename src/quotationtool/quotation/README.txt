@@ -27,24 +27,15 @@ to be valid references of quotations.
     RelationPreconditionError
 
 So lets define a book class for example. And then let's mark it to be
-a valid reference.
+a valid reference. Here we use a sample class called Book
 
-    >>> from quotationtool.quotation.interfaces import IReference
-    >>> import zope.interface
-    >>> import zope.component
-
-    >>> class IBook(zope.interface.Interface):
-    ...     author = zope.interface.Attribute("author")
-    ...     title = zope.interface.Attribute("title")
-    ...     year = zope.interface.Attribute("year")
-    >>> from zope.location.interfaces import ILocation
-    >>> class Book(object):
-    ...     zope.interface.implements(IBook, ILocation)
-    ...	    __name__ = __parent__ = None
+    >>> from quotationtool.quotation.testing import Book, IBook
 
 And now we slam the IReference marker interface on it. Note: This may be
 done in ZCML or somewhere else where you wire up your components.
 
+    >>> from quotationtool.quotation.interfaces import IReference
+    >>> import zope.interface
     >>> zope.interface.classImplements(Book, IReference)
 
     >>> samplebook = Book()
@@ -79,6 +70,7 @@ quotation.
 Knowing the source type we can make a source from the quotation and
 render it.
 
+    >>> import zope.component
     >>> source = zope.component.createObject(quote.source_type, quote.quotation)
     >>> source.__class__
     <class 'quotationtool.renderer.plaintext.PlainText'>

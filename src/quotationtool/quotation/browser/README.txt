@@ -119,10 +119,12 @@ There is a table for the quotations in the container:
     >>> table.update()
     Traceback (most recent call last):
     ...
-    ComponentLookupError: (<Book object at 0x...>, <InterfaceClass z3c.indexer.interfaces.IIndexer>, 'year')
+    ComponentLookupError: (<Book object at 0x...>, <InterfaceClass z3c.indexer.interfaces.IIndexer>, 'year-field')
 
-For the table to work we need indexer adapters named 'year', 'author'
-and 'title' for our book class.
+For the table to work we need indexer adapters named 'year-field',
+'author-field' and 'title-field' for our book class. (The suffix
+'-field' says that they are field indices, not text indices or value
+indices.)
 
     >>> from z3c.indexer.indexer import ValueIndexer
 
@@ -138,9 +140,9 @@ and 'title' for our book class.
     ...	    zope.component.adapts(IBook)
     ...	    def value(self): return self.context.title
     ...
-    >>> zope.component.provideAdapter(YearIndexer, name='year')
-    >>> zope.component.provideAdapter(AuthorIndexer, name='author')
-    >>> zope.component.provideAdapter(TitleIndexer, name='title')
+    >>> zope.component.provideAdapter(YearIndexer, name='year-field')
+    >>> zope.component.provideAdapter(AuthorIndexer, name='author-field')
+    >>> zope.component.provideAdapter(TitleIndexer, name='title-field')
 
     >>> from zope.security.management import newInteraction
     >>> newInteraction()
@@ -179,6 +181,11 @@ for objects of the book class.
     >>> table.render()
     u'...<td>1974</td>...<td>Updike, John</td>...<td>Cunts</td>...'
 
+To see a reference's quotations we need something to track 1/n
+relations. We do this by using a relation catalog. (Note: The relation
+catalog is based on integer ids. An intids utility is set up in test
+setup.)
+
     >>> from zc.relation.catalog import Catalog
     >>> from zc.relation.interfaces import ICatalog
     >>> from quotationtool.relation import dump, load
@@ -190,16 +197,6 @@ for objects of the book class.
     ...     IQuotation['reference'],
     ...     dump = dump, load = load,
     ...     name = 'iquotation-reference')
-    >>> from zope.intid import IntIds
-    >>> from zope.intid.interfaces import IIntIds
-    >>> intids = IntIds()
-    >>> zope.component.provideUtility(intids, IIntIds)
-    >>> isinstance(intids.register(samplebook), int)
-    True
-    >>> import transaction
-    >>> #transaction.commit()
-    >>> isinstance(intids.register(she), int)
-    True
     >>> relations.index(she)
     
 There is also a table that lists the quotations in a reference:

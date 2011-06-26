@@ -42,6 +42,8 @@ class QuotationIndexer(MultiIndexer):
 class AnyValueIndexer(ValueIndexer):
 
     indexName = 'any-fulltext'
+
+    zope.component.adapts(IQuotation)
     
     @property
     def value(self):
@@ -55,6 +57,48 @@ class AnyValueIndexer(ValueIndexer):
         if reference_indexer is not None:
             rc += u" " + reference_indexer.value
         return rc
+
+
+class ReferenceIndexerBase(ValueIndexer):
+    """ A base class for indexer that call indexers on the reference
+    attribute."""
+
+    zope.component.adapts(IQuotation)
+
+    indexName = None
+    
+    @property
+    def value(self):
+        adapter = zope.component.getAdapter(
+            self.context.reference,
+            interface=IValueIndexer, name=self.indexName)
+        #raise Exception(adapter.value)
+        return adapter.value
+
+
+class AuthorTextIndexer(ReferenceIndexerBase):
+
+    indexName = 'author-fulltext'
+
+
+class AuthorFieldIndexer(ReferenceIndexerBase):
+
+    indexName = 'author-field'
+
+
+class TitleTextIndexer(ReferenceIndexerBase):
+
+    indexName = 'title-fulltext'
+
+
+class TitleFieldIndexer(ReferenceIndexerBase):
+
+    indexName = 'title-field'
+
+
+class YearFieldIndexer(ReferenceIndexerBase):
+
+    indexName = 'year-field'
 
 
 def createQuotationIndices(site):
