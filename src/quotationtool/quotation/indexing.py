@@ -59,6 +59,17 @@ class AnyValueIndexer(ValueIndexer):
         return rc
 
 
+class IdValueIndexer(ValueIndexer):
+
+    indexName = 'id-field'
+
+    zope.component.adapts(IQuotation)
+
+    @property
+    def value(self):
+        return self.context.__name__
+
+
 class ReferenceIndexerBase(ValueIndexer):
     """ A base class for indexer that call indexers on the reference
     attribute."""

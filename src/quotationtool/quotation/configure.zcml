@@ -100,6 +100,10 @@
       name="any-fulltext"
       />
   <adapter
+      factory=".indexing.IdValueIndexer"
+      name="id-value"
+      />
+  <adapter
       factory=".indexing.QuotationIndexer"
       name="QuotationIndexer"
       />
@@ -124,29 +128,34 @@
       name="year-field"
       />
 
+  <!-- excluded to search.zcml -->
+  <!--utility
+      component=".searcher.quotation_search_filter_factory"
+      name="quotationtool.quotation.searcher.IQuotationtoolSearchFilter"
+      /-->
 
   <adapter
-      for=".searcher.IQuotationSearchFilter"
+      for=".interfaces.IQuotationSearchFilter"
       factory="quotationtool.search.searcher.any_factory"
       name="any-fulltext"
       />
   <adapter
-      for=".searcher.IQuotationSearchFilter"
+      for=".interfaces.IQuotationSearchFilter"
       factory="quotationtool.search.searcher.type_factory"
       name="type-field"
       />
   <adapter
-      for=".searcher.IQuotationSearchFilter"
+      for=".interfaces.IQuotationSearchFilter"
       factory=".searcher.quotation_factory"
       name="quotation-fulltext"
       />
   <adapter
-      for=".searcher.IQuotationSearchFilter"
+      for=".interfaces.IQuotationSearchFilter"
       factory=".searcher.author_factory"
       name="author-fulltext"
       />
   <adapter
-      for=".searcher.IQuotationSearchFilter"
+      for=".interfaces.IQuotationSearchFilter"
       factory=".searcher.title_factory"
       name="title-fulltext"
       />

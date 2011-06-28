@@ -1,23 +1,24 @@
 import zope.interface
-from z3c.searcher.interfaces import ISearchFilter
+import zope.component
+from z3c.searcher.interfaces import ISearchFilter, CONNECTOR_OR, CONNECTOR_AND
 from z3c.searcher.criterium import TextCriterium, SearchCriterium
 from z3c.searcher.criterium import factory
 from z3c.searcher.filter import EmptyTerm, SearchFilter
+from zope.traversing.browser import absoluteURL
 
-from quotationtool.search.interfaces import ITypeExtent
+from quotationtool.search.interfaces import IQuotationtoolSearchFilter
+from quotationtool.search.interfaces import ITypeExtent, ICriteriaChainSpecifier, IResultSpecifier
 
-from quotationtool.quotation.interfaces import _
-
-
-class IQuotationSearchFilter(ISearchFilter):
-    """ Search filter for quotation objects."""
+from quotationtool.quotation.interfaces import _, IQuotationSearchFilter, IQuotationContainer
 
 
 class QuotationSearchFilter(SearchFilter):
     """ Quotation search filter."""
 
     zope.interface.implements(IQuotationSearchFilter,
-                              ITypeExtent)
+                              ITypeExtent,
+                              ICriteriaChainSpecifier,
+                              IResultSpecifier)
 
     def getDefaultQuery(self):
         return EmptyTerm()
@@ -26,8 +27,28 @@ class QuotationSearchFilter(SearchFilter):
         """ See ITypeExtent"""
         crit = self.createCriterium('type-field')
         crit.value = u'quotationtool.quotation.interfaces.IQuotation'
-        crit.connectorName = 'AND'
+        crit.connectorName = CONNECTOR_AND
         self.addCriterium(crit)
+
+    first_criterium_connector_name = CONNECTOR_OR
+
+    ignore_empty_criteria = True
+
+    def resultURL(self, context, request):
+        quotations = zope.component.getUtility(
+            IQuotationContainer,
+            context=context)
+        return absoluteURL(quotations, request) + u"/@@searchResult.html"
+
+    session_name = 'quotations'
+
+
+quotation_search_filter_factory = zope.component.factory.Factory(
+    QuotationSearchFilter,
+    _('QuotationSearchFilter-title', u"Quotations"),
+    _('QuotationSearchFilter-desc', u"Search for quotations.")
+    )
+
 
 
 class QuotationCriterium(TextCriterium):
@@ -58,5 +79,3 @@ class TitleCriterium(TextCriterium):
     label = _('title-fulltext-label', u"Title")
 
 title_factory = factory(TitleCriterium, 'title-fulltext')
-
-

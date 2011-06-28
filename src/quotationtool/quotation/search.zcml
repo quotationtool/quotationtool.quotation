@@ -1,0 +1,11 @@
+<!-- Include this file if you wish to have a search target 
+     'Quotations' on the search form. -->
+<configure
+    xmlns="http://namespaces.zope.org/zope">
+
+  <utility
+      component=".searcher.quotation_search_filter_factory"
+      name="quotationtool.quotation.searcher.IQuotationtoolSearchFilter"
+      />
+
+</configure>

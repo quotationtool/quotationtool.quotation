@@ -3,6 +3,7 @@ from zope.container.interfaces import IContained, IContainer
 from zope.container.constraints import containers, contains
 from zope.schema import Text, TextLine, List, Int, Choice, Object
 from zope.i18nmessageid import MessageFactory
+from z3c.searcher.interfaces import ISearchFilter
 
 from quotationtool.relation.schema import Relation
 
@@ -132,3 +133,6 @@ class IQuotationContainer(Interface):
 class IQuotationContainerContainer(IContainer):
     """ The container part of the IQuotationContainer interface."""
 
+
+class IQuotationSearchFilter(ISearchFilter):
+    """ Search filter for quotation objects."""
