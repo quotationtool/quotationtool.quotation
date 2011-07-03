@@ -1,0 +1,15 @@
+<div class="example-list-view" i18n:domain="quotationtool">
+  <div class="quotation"
+      tal:content="structure view/renderQuotation">
+    ...
+  </div>
+  <div class="citation"
+      i18n:translate="">
+    Cited from:<br/>
+    <span class="formatted-citation"
+	tal:content="structure context/reference/@@citation"
+	i18n:name="citation">
+      Author: Title, Year.
+    </span>.
+  </div>
+</div>

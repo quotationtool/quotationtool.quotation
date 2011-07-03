@@ -8,6 +8,7 @@ from zope.traversing.browser import absoluteURL
 
 from quotationtool.search.interfaces import IQuotationtoolSearchFilter
 from quotationtool.search.interfaces import ITypeExtent, ICriteriaChainSpecifier, IResultSpecifier
+from quotationtool.search.interfaces import ICriteriumDescription
 
 from quotationtool.quotation.interfaces import _, IQuotationSearchFilter, IQuotationContainer
 
@@ -50,13 +51,18 @@ quotation_search_filter_factory = zope.component.factory.Factory(
     )
 
 
-
 class QuotationCriterium(TextCriterium):
     """ Full text criterium for 'quotation-fulltext' index."""
+
+    zope.interface.implements(ICriteriumDescription)
 
     indexOrName = 'quotation-fulltext'
 
     label = _('quotation-fulltext-label', u"Quotation")
+
+    description = _('quotation-fulltext-desc', u"Matches in quotation field.")
+
+    ui_weight = 90
 
 quotation_factory = factory(QuotationCriterium, 'quotation-fulltext')
 
@@ -64,9 +70,15 @@ quotation_factory = factory(QuotationCriterium, 'quotation-fulltext')
 class AuthorCriterium(TextCriterium):
     """ Full text criterium for 'author-fulltext' index."""
 
+    zope.interface.implements(ICriteriumDescription)
+
     indexOrName = 'author-fulltext'
 
     label = _('author-fulltext-label', u"Author")
+
+    description = _('author-fulltext-desc', u"Matches author or editor.")
+
+    ui_weight = 110
 
 author_factory = factory(AuthorCriterium, 'author-fulltext')
 
@@ -74,8 +86,14 @@ author_factory = factory(AuthorCriterium, 'author-fulltext')
 class TitleCriterium(TextCriterium):
     """ Full text criterium for 'title-fulltext' index."""
 
+    zope.interface.implements(ICriteriumDescription)
+
     indexOrName = 'title-fulltext'
 
     label = _('title-fulltext-label', u"Title")
+
+    description = _('title-fulltext-desc', u"Matches title, original title, subtitle and the like.")
+
+    ui_weight = 120
 
 title_factory = factory(TitleCriterium, 'title-fulltext')

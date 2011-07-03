@@ -40,8 +40,7 @@ class ListView(BrowserView, RenderQuotation):
 
     limit = 200
 
-    # TODO
-    template = ViewPageTemplateFile('details.pt')
+    template = ViewPageTemplateFile('list.pt')
 
     def __call__(self):
         return self.template()
