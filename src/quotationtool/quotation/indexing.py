@@ -36,7 +36,7 @@ class QuotationIndexer(MultiIndexer):
         quotation_field.doUnIndex(self.oid)
 
         page_field = self.getIndex('page-field')
-        page_field.doIndex(self.oid)
+        page_field.doUnIndex(self.oid)
 
 
 class AnyValueIndexer(ValueIndexer):
