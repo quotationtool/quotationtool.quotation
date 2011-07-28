@@ -108,10 +108,6 @@ class YearColumn(column.Column):
             name='year')
         return view()
 
-    def getSortKey(self, item):
-        indexer = zope.component.getAdapter(item.reference, IIndexer, name='year-field')
-        return indexer.value
-
 
 class AuthorColumn(column.Column):
     """ The author of the reference from which the quotation is
