@@ -124,8 +124,12 @@
       name="title-field"
       />
   <adapter
-      factory=".indexing.YearFieldIndexer"
-      name="year-field"
+      factory=".indexing.YearSetIndexer"
+      name="year-set"
+      />
+  <adapter
+      factory=".indexing.OrigYearSetIndexer"
+      name="origyear-set"
       />
 
   <!-- excluded to search.zcml -->

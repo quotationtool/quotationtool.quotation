@@ -107,9 +107,14 @@ class TitleFieldIndexer(ReferenceIndexerBase):
     indexName = 'title-field'
 
 
-class YearFieldIndexer(ReferenceIndexerBase):
+class YearSetIndexer(ReferenceIndexerBase):
 
-    indexName = 'year-field'
+    indexName = 'year-set'
+
+
+class OrigYearSetIndexer(ReferenceIndexerBase):
+
+    indexName = 'origyear-set'
 
 
 def createQuotationIndices(site):
