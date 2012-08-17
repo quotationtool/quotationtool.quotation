@@ -15,7 +15,7 @@
 		  ></tal:block>
 	  </span>  
       </td>
-      <td tal:content="structure view/renderQuotation">...</td>
+      <td class="data-col" tal:content="structure view/renderQuotation">...</td>
     </tr>
     <tr>
       <td class="schema-col" 
@@ -24,7 +24,7 @@
 	  Cited from
 	</metal:block>
       </td>
-      <td>
+      <td  class="data-col">
 	<a class="content" href=""
 	    tal:content="structure context/reference/@@citation"
 	    tal:attributes="href string:${context/reference/@@absolute_url}/@@quotations.html"
@@ -38,7 +38,7 @@
 	  Volume
 	</metal:block>
       </td>
-      <td tal:content="context/volume | nothing">...</td>
+      <td class="data-col" tal:content="context/volume | nothing">...</td>
     </tr>
     <tr>
       <td class="schema-col" 
@@ -47,7 +47,7 @@
 	  Page
 	</metal:block>
       </td>
-      <td tal:content="context/page | nothing">...</td>
+      <td class="data-col" tal:content="context/page | nothing">...</td>
     </tr>
     <tr tal:condition="context/position|nothing">
       <td class="schema-col" 
@@ -56,7 +56,7 @@
 	  Position
 	</metal:block>
       </td>
-      <td tal:content="context/position | nothing">...</td>
+      <td class="data-col" tal:content="context/position | nothing">...</td>
     </tr>
   </table>
 </div>

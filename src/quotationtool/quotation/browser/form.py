@@ -8,6 +8,7 @@ from zope.traversing.browser.absoluteurl import absoluteURL
 from zope.proxy import removeAllProxies
 from zope.securitypolicy.interfaces import IPrincipalRoleManager
 import zc.resourcelibrary
+from zope.location.location import LocationIterator
 
 from quotationtool.skin.interfaces import ITabbedContentLayout
 from quotationtool.editorial.browser.form import Z3cFormMixin
@@ -65,7 +66,10 @@ class AddQuotationInReferenceContext(form.AddForm):
         self._obj = container[name] = quotation
 
     def nextURL(self):
-        return absoluteURL(self._obj, self.request)
+        for location in LocationIterator(self._obj):
+            if zope.component.interfaces.ISite.providedBy(location):
+                break
+        return absoluteURL(location, self.request) + u"/account/@@worklist.html"
 
 
 class QuotationEditForm(Z3cFormMixin, form.EditForm):
